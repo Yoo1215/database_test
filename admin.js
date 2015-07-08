@@ -26,7 +26,27 @@ router.get('/', function (request, response) {
         
         if (!error) {
             
-            connection.query('SELECT * FROM Total_Board ORDER BY timestamp;', function (error, query) {
+            connection.query('SELECT * FROM Total_Board ORDER BY timestamp desc;', function (error, query) {
+                
+                response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
+                response.end(ejs.render(data, { 'query' : query }));
+            });
+        }
+        else {
+         
+            response.writeHead(503, { 'Content-Type' : 'text/html;' });
+            response.end();
+        }
+    });
+});
+
+router.get('/Bambu', function (request, response) {
+
+    fs.readFile('admin_bambu.ejs', 'utf8', function (error, data) {
+        
+        if (!error) {
+            
+            connection.query('SELECT * FROM Bambu_Board ORDER BY timestamp desc;', function (error, query) {
                 
                 response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
                 response.end(ejs.render(data, { 'query' : query }));
@@ -46,7 +66,7 @@ router.get('/Thunder', function (request, response) {
         
         if (!error) {
             
-            connection.query('SELECT * FROM Thunder_Board;', function (error, query) {
+            connection.query('SELECT * FROM Thunder_Board ORDER BY timestamp desc;', function (error, query) {
                 
                 response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
                 response.end(ejs.render(data, { 'query' : query }));
@@ -66,7 +86,7 @@ router.get('/Notice', function (request, response) {
         
         if (!error) {
             
-            connection.query('SELECT * FROM Notice_Board;', function (error, query) {
+            connection.query('SELECT * FROM Notice_Board ORDER BY timestamp desc;', function (error, query) {
                 
                 response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
                 response.end(ejs.render(data, { 'query' : query }));
