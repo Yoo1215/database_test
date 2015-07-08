@@ -99,3 +99,18 @@ router.get('/Notice', function (request, response) {
         }
     });
 });
+
+router.get('/delete/:board_id', function(req, res, next) {
+
+        connection.query('delete from Bambu_Board where boardID=?;', 
+                         [req.params.board_id]);
+    
+        res.writeHead(302, {'Location' : '/'});
+        res.end();
+});
+
+connect.use(router);
+connect.listen(8080, function () {
+
+    console.log("Server running on port 8080 :)");
+});
