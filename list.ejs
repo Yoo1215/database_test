@@ -19,8 +19,7 @@
                 <th>content</th>
                 <th>timestamp</th>
                 <th>like</th>
-                <th>warn</th>
-                
+                <th>warn</th>                
                 <th>Update</th>
                 <th>Delete</th>
             
@@ -32,16 +31,16 @@
 
                 <tr>
 
-                    <td><%= item.boardid %></td>
-                    <td><%= item.appid %></td>
+                    <td><%= item.boardID %></td>
+                    <td><%= item.appID %></td>
                     <td><%= item.boardname %></td>
                     <td><%= item.nickname %></td>
                     <td><%= item.content %></td>
                     <td><%= item.timestamp %></td>
                     <td><%= item.like %></td>
                     <td><%= item.warn %></td>
-                    <td><a href="/update/<%= item.id %>">Update</a></td>
-                    <td><a href="/delete/<%= item.id %>">Delete</a></td>
+                    <td><a href="/update/<%= item.boardID %>">Update</a></td>
+                    <td><a href="/delete/<%= item.boardID %>">Delete</a></td>
 
                 </tr>
 
