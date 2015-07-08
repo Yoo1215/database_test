@@ -42,7 +42,7 @@ router.get('/', function (request, response) {
 
 router.get('/Bambu', function (request, response) {
 
-    fs.readFile('admin_board.ejs', 'utf8', function (error, data) {
+    fs.readFile('admin_bambu.ejs', 'utf8', function (error, data) {
         
         if (!error) {
             
@@ -62,7 +62,7 @@ router.get('/Bambu', function (request, response) {
 
 router.get('/Thunder', function (request, response) {
 
-    fs.readFile('admin_board.ejs', 'utf8', function (error, data) {
+    fs.readFile('admin_thunder.ejs', 'utf8', function (error, data) {
         
         if (!error) {
             
@@ -82,7 +82,7 @@ router.get('/Thunder', function (request, response) {
 
 router.get('/Notice', function (request, response) {
 
-    fs.readFile('admin_board.ejs', 'utf8', function (error, data) {
+    fs.readFile('admin_notice.ejs', 'utf8', function (error, data) {
         
         if (!error) {
             
@@ -100,9 +100,27 @@ router.get('/Notice', function (request, response) {
     });
 });
 
-router.get('/delete/:board_id', function(req, res, next) {
+router.get('/delete/Bambu_Board/:board_id', function(req, res, next) {
 
         connection.query('delete from Bambu_Board where boardID=?;', 
+                         [req.params.board_id]);
+    
+        res.writeHead(302, {'Location' : '/'});
+        res.end();
+});
+
+router.get('/delete/Thunder_Board/:board_id', function(req, res, next) {
+
+        connection.query('delete from Thunder_Board where boardID=?;', 
+                         [req.params.board_id]);
+    
+        res.writeHead(302, {'Location' : '/'});
+        res.end();
+});
+
+router.get('/delete/Notice_Board/:board_id', function(req, res, next) {
+
+        connection.query('delete from Notice_Board where boardID=?;', 
                          [req.params.board_id]);
     
         res.writeHead(302, {'Location' : '/'});
