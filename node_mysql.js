@@ -72,7 +72,7 @@ router.get('/update/:board_id', function (request, response) {
 
    fs.readFile('update.ejs', 'utf8', function (error, data) {
        
-       connection.query('SELECT * FROM Bambu_Board WHERE boardID = ?;', [ request.params.boardID ], 
+       connection.query('SELECT * FROM Bambu_Board WHERE boardID = ?;', [ request.params.board_id ], 
                         
                         function (error, query) {
            
@@ -102,7 +102,7 @@ router.post('/update/:board_id', function(req, res, next) {
 router.get('/delete/:board_id', function(req, res, next) {
 
         connection.query('delete from Bambu_Board where boardID=?;', 
-                         [req.params.boardID]);
+                         [req.params.board_id]);
     
         res.writeHead(302, {'Location' : '/'});
         res.end();
