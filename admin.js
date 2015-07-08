@@ -26,53 +26,7 @@ router.get('/', function (request, response) {
         
         if (!error) {
             
-            connection.query('SELECT * FROM Total_Board;', function (error, query) {
-                
-                response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
-                response.end(ejs.render(data, { 'query' : query }));
-            });
-        }
-        else {
-         
-            response.writeHead(503, { 'Content-Type' : 'text/html;' });
-            response.end();
-        }
-    });
-});
-
-router.get('/Bambu/insert', function (request, response) {
-
-    fs.readFile('insert.html', 'utf8', function (error, data) {
-        
-        if (!error) {
-            
-            response.writeHead(200, { 'Content-Type' : 'text/html' });
-            response.end(data);
-        }
-        else {
-         
-            response.writeHead(503, { 'Content-Type' : 'text/html;' });
-            response.end();
-        }
-    });
-});
-
-router.post('/Bambu/insert', function (request, response) {
-
-    connection.query('INSERT INTO Bambu_Board (tablename, nickname, content) values (?, ?, ?);',
-                  [ request.body.tablename, request.body.nickname, request.body.content ]);
-    
-    response.writeHead(302, { 'Location' : '/' });
-    response.end();
-});
-
-router.get('/Bambu', function (request, response) {
-
-    fs.readFile('admin_bambu.ejs', 'utf8', function (error, data) {
-        
-        if (!error) {
-            
-            connection.query('SELECT * FROM Bambu_Board;', function (error, query) {
+            connection.query('SELECT * FROM Total_Board ORDER BY timestamp;', function (error, query) {
                 
                 response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
                 response.end(ejs.render(data, { 'query' : query }));
