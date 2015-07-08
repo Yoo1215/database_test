@@ -1,0 +1,52 @@
+<html>
+
+    <head>
+        
+        <title>Board_Admin</title>
+        <meta charset="utf-8">
+		
+    </head>
+    <body>
+        
+        <table width="100%" border="1">
+            
+            <tr>
+            
+                <th>boardID</th>
+                <th>appID</th>
+                <th>boardname</th>
+                <th>nickname</th>
+                <th>content</th>
+                <th>timestamp</th>
+                <th>like</th>
+                <th>warn</th>
+                <th>Delete</th>
+            
+            </tr>
+
+            <% if (query != undefined) { %>
+            
+                <% query.forEach(function(item, index) { %>
+
+                <tr>
+
+                    <td><%= item.boardID %></td>
+                    <td><%= item.appID %></td>
+                    <td><%= item.boardname %></td>
+                    <td><%= item.nickname %></td>
+                    <td><%= item.content %></td>
+                    <td><%= item.timestamp %></td>
+                    <td><%= item.like %></td>
+                    <td><%= item.warn %></td>
+
+                </tr>
+
+                <% }); %>
+
+            <% } %>
+            
+        </table>
+        
+    </body>
+
+</html>

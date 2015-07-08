@@ -22,7 +22,7 @@ connect.use(body_parser.urlencoded({ 'extended' : true }));
 
 router.get('/', function (request, response) {
 
-    fs.readFile('admin_board.ejs', 'utf8', function (error, data) {
+    fs.readFile('list_board.ejs', 'utf8', function (error, data) {
         
         if (!error) {
             
@@ -40,7 +40,7 @@ router.get('/', function (request, response) {
     });
 });
 
-router.get('/insert', function (request, response) {
+router.get('/Bambu/insert', function (request, response) {
 
     fs.readFile('insert.html', 'utf8', function (error, data) {
         
@@ -57,10 +57,10 @@ router.get('/insert', function (request, response) {
     });
 });
 
-router.post('/insert', function (request, response) {
+router.post('/Bambu/insert', function (request, response) {
 
-    connection.query('INSERT INTO Bambu_Board (nickname, content) values (?, ?);',
-                  [ request.body.nickname, request.body.content ]);
+    connection.query('INSERT INTO Bambu_Board (tablename, nickname, content) values (?, ?, ?);',
+                  [ request.body.tablename, request.body.nickname, request.body.content ]);
     
     response.writeHead(302, { 'Location' : '/' });
     response.end();
