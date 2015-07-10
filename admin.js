@@ -127,6 +127,26 @@ router.get('/delete/Notice_Board/:board_id', function(req, res, next) {
         res.end();
 });
 
+router.get('/users', function (request, response) {
+
+    fs.readFile('users.ejs', 'utf8', function (error, data) {
+        
+        if (!error) {
+            
+            connection.query('SELECT * FROM User;', function (error, query) {
+                
+                response.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8;' });
+                response.end(ejs.render(data, { 'query' : query }));
+            });
+        }
+        else {
+         
+            response.writeHead(503, { 'Content-Type' : 'text/html;' });
+            response.end();
+        }
+    });
+});
+
 connect.use(router);
 connect.listen(8080, function () {
 
